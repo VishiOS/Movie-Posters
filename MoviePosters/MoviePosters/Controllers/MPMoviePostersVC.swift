@@ -13,10 +13,10 @@ class MPMoviePostersVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupViewProperties()
-        
         // Do any additional setup after loading the view.
     }
     func setupViewProperties() {
+        self.title = "Movie Posters"
         self.moviePostersCollectionView.delegate = viewModel
         self.moviePostersCollectionView.dataSource = viewModel
     }
