@@ -9,12 +9,14 @@
 /* Begin PBXBuildFile section */
 		6603402825FCE2FB00B98E40 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6603402725FCE2FB00B98E40 /* AppDelegate.swift */; };
 		6603402A25FCE2FB00B98E40 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6603402925FCE2FB00B98E40 /* SceneDelegate.swift */; };
-		6603402C25FCE2FB00B98E40 /* MoviePostersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6603402B25FCE2FB00B98E40 /* MoviePostersVC.swift */; };
 		6603402F25FCE2FB00B98E40 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6603402D25FCE2FB00B98E40 /* Main.storyboard */; };
 		6603403125FCE2FD00B98E40 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6603403025FCE2FD00B98E40 /* Assets.xcassets */; };
 		6603403425FCE2FD00B98E40 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6603403225FCE2FD00B98E40 /* LaunchScreen.storyboard */; };
 		6603403F25FCE2FE00B98E40 /* MoviePostersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6603403E25FCE2FE00B98E40 /* MoviePostersTests.swift */; };
 		6603404A25FCE2FE00B98E40 /* MoviePostersUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6603404925FCE2FE00B98E40 /* MoviePostersUITests.swift */; };
+		6603408A25FCE88600B98E40 /* MPMoviePostersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6603408925FCE88600B98E40 /* MPMoviePostersViewModel.swift */; };
+		6603408F25FCEACB00B98E40 /* MPMoviePostersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6603408E25FCEACB00B98E40 /* MPMoviePostersCell.swift */; };
+		660340A325FCEEAC00B98E40 /* MPMoviePostersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660340A225FCEEAC00B98E40 /* MPMoviePostersVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,7 +40,6 @@
 		6603402425FCE2FB00B98E40 /* MoviePosters.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoviePosters.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6603402725FCE2FB00B98E40 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6603402925FCE2FB00B98E40 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		6603402B25FCE2FB00B98E40 /* MoviePostersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviePostersVC.swift; sourceTree = "<group>"; };
 		6603402E25FCE2FB00B98E40 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6603403025FCE2FD00B98E40 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6603403325FCE2FD00B98E40 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,6 +50,9 @@
 		6603404525FCE2FE00B98E40 /* MoviePostersUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoviePostersUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6603404925FCE2FE00B98E40 /* MoviePostersUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviePostersUITests.swift; sourceTree = "<group>"; };
 		6603404B25FCE2FE00B98E40 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6603408925FCE88600B98E40 /* MPMoviePostersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MPMoviePostersViewModel.swift; sourceTree = "<group>"; };
+		6603408E25FCEACB00B98E40 /* MPMoviePostersCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MPMoviePostersCell.swift; sourceTree = "<group>"; };
+		660340A225FCEEAC00B98E40 /* MPMoviePostersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MPMoviePostersVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,8 +105,9 @@
 			children = (
 				6603408125FCE5AA00B98E40 /* AppDelegate */,
 				6603407F25FCE52C00B98E40 /* Controllers */,
-				6603408025FCE54700B98E40 /* Models */,
 				6603407E25FCE51800B98E40 /* ViewModels */,
+				6603408525FCE64200B98E40 /* Views */,
+				6603408025FCE54700B98E40 /* Models */,
 				6603402D25FCE2FB00B98E40 /* Main.storyboard */,
 				6603403025FCE2FD00B98E40 /* Assets.xcassets */,
 				6603403225FCE2FD00B98E40 /* LaunchScreen.storyboard */,
@@ -132,6 +137,7 @@
 		6603407E25FCE51800B98E40 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				6603408925FCE88600B98E40 /* MPMoviePostersViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -139,7 +145,7 @@
 		6603407F25FCE52C00B98E40 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				6603402B25FCE2FB00B98E40 /* MoviePostersVC.swift */,
+				660340A225FCEEAC00B98E40 /* MPMoviePostersVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -158,6 +164,14 @@
 				6603402925FCE2FB00B98E40 /* SceneDelegate.swift */,
 			);
 			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		6603408525FCE64200B98E40 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				6603408E25FCEACB00B98E40 /* MPMoviePostersCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -290,9 +304,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6603402C25FCE2FB00B98E40 /* MoviePostersVC.swift in Sources */,
 				6603402825FCE2FB00B98E40 /* AppDelegate.swift in Sources */,
+				6603408A25FCE88600B98E40 /* MPMoviePostersViewModel.swift in Sources */,
+				6603408F25FCEACB00B98E40 /* MPMoviePostersCell.swift in Sources */,
 				6603402A25FCE2FB00B98E40 /* SceneDelegate.swift in Sources */,
+				660340A325FCEEAC00B98E40 /* MPMoviePostersVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
