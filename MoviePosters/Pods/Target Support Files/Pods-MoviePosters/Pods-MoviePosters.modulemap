@@ -1,0 +1,6 @@
+framework module Pods_MoviePosters {
+  umbrella header "Pods-MoviePosters-umbrella.h"
+
+  export *
+  module * { export * }
+}
