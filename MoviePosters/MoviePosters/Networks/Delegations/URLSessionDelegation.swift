@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+protocol URLSessionProtocol {
+    func dataTask(request: URLRequest, completionHandler: @escaping DataTaskResult) -> URLSessionDataTask
+}

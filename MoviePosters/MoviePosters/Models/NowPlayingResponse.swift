@@ -6,3 +6,12 @@
 //
 
 import Foundation
+struct NowPlayingResponse: Codable {
+    var movies: [Movie]
+    var totalPages: Int
+
+    enum CodingKeys: String, CodingKey {
+        case movies = "results"
+        case totalPages = "total_pages"
+    }
+}
