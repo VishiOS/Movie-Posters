@@ -9,19 +9,21 @@ import UIKit
 
 class MPMovieDetailVC: UIViewController {
     
+    let viewModel = MPMovieDetailViewModel()
     var movie: Movie?
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var overviewTextView: UITextView!
     @IBOutlet weak var posterImage: UIImageView!
     @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var releaseDateLabel: UILabel!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupViewProperties()
         // Do any additional setup after loading the view.
     }
     func setupViewProperties(){
+        self.fetchReleaseDates()
         guard let movie = movie else { return }
         titleLabel.text = movie.title
         overviewTextView.text = movie.overview
@@ -33,17 +35,12 @@ class MPMovieDetailVC: UIViewController {
             posterImage.image = placeholderImage
         }
     }
-        
-        
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    func fetchReleaseDates() {
+        self.viewModel.fetchReleaseDates(movie: self.movie) { (dateString, error) in
+            DispatchQueue.main.async{
+                self.releaseDateLabel.text = dateString
+            }
+        }
     }
-    */
-
 }

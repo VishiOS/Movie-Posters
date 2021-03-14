@@ -1,13 +1,12 @@
 //
-//  NowPlayingAPI.swift
+//  ReleaseDatesAPPI.swift
 //  MoviePosters
 //
-//  Created by Vishal22 Sharma on 13/03/21.
+//  Created by Vishal22 Sharma on 14/03/21.
 //
 
 import Foundation
-
-class NowPlayingAPI: Service {
+class ReleaseDatesAPI: Service {
 
     var paramters: [String: String]?
 
@@ -21,7 +20,11 @@ class NowPlayingAPI: Service {
     }
 
     var path: String {
-        return MPNetworkConstants.nowPlayingServicePath
+        let serviceRequest = MPNetworkConstants.releaseDatesServicePath
+        
+        let servicePath = serviceRequest.replacingOccurrences(of: "movie_id", with: paramters?["movie_id"] ?? "", options: .literal, range: nil)
+
+        return servicePath
     }
 
     var method: HTTPMethod {
@@ -41,6 +44,6 @@ class NowPlayingAPI: Service {
     }
 }
 
-protocol NowPlayingAPIService {
-    func getNowPlayingMovies(service: Service, completion: @escaping (_ result: APIResponse<NowPlayingResponse>) -> ())
+protocol ReleaseDatesAPIServices {
+    func getMoviewReleaseDate(service: Service, completion: @escaping (_ result: APIResponse<ReleaseDateResponse>) -> ())
 }

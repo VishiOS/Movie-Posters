@@ -7,7 +7,7 @@
 
 import Foundation
 
-class WebServices: NowPlayingAPIService {
+class WebServices: ReleaseDatesAPIServices, NowPlayingAPIService {
     
     private var session: URLSessionProtocol
 
@@ -51,8 +51,12 @@ class WebServices: NowPlayingAPIService {
     func getNowPlayingMovies(service: Service, completion: @escaping (APIResponse<NowPlayingResponse>) -> ()) {
         self.request(type: NowPlayingResponse.self, service: service, completion: completion)
     }
-    
-    func getMoviewReleaseDate(service: Service, completion: @escaping (APIResponse<NowPlayingResponse>) -> ()) {
-        self.request(type: NowPlayingResponse.self, service: service, completion: completion)
+    func getMoviewReleaseDate(service: Service, completion: @escaping (APIResponse<ReleaseDateResponse>) -> ()) {
+        self.request(type: ReleaseDateResponse.self, service: service, completion: completion)
     }
 }
+
+
+
+
+

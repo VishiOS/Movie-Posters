@@ -18,4 +18,7 @@ struct MPNetworkConstants {
     static let imagesBaseURL = "https://image.tmdb.org/t/p/w500/"
     static let queryParameterKey = "query"
     static let pageParameterKey = "page"
+    static let releaseDatesServicePath = "/movie/movie_id/release_dates"
+    static let movieId = "movie_id"
 }
+//movie/{movie_id}/release_dates
