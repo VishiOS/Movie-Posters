@@ -15,7 +15,10 @@ class MPMoviePostersViewModel: NSObject {
     var completionForDedailView: completionHandllerForDetailView?
     private (set) var state: Bindable<FetchingServiceState> = Bindable(.loading)
     private let webServices: WebServices
-    private (set) var nowPlayingList: Bindable<[Movie]> = Bindable([])
+    var nowPlayingList: Bindable<[Movie]> = Bindable([])
+    var searchArray: Bindable<[Movie]> = Bindable([])
+    var isSearching = false
+    
     private (set) var currentPage: Int = 1
     private (set) var totalPages: Int = Int.max
     
@@ -24,23 +27,43 @@ class MPMoviePostersViewModel: NSObject {
     }
     
 }
-extension MPMoviePostersViewModel: UICollectionViewDataSource, UICollectionViewDelegate{
+extension MPMoviePostersViewModel: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.nowPlayingList.value.count
+        if self.isSearching{
+            return self.searchArray.value.count
+        }else{
+            return self.nowPlayingList.value.count
+        }
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MPMoviePostersCell.cellIdentifier, for: indexPath as IndexPath) as! MPMoviePostersCell
-        cell.movie = self.nowPlayingList.value[indexPath.row]
+        if self.isSearching {
+            cell.movie = self.searchArray.value[indexPath.row]
+        }else{
+            cell.movie = self.nowPlayingList.value[indexPath.row]
+        }
+        
         return cell
     }
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("You selected cell #\(indexPath.item)!")
-        self.completionForDedailView?(self.nowPlayingList.value[indexPath.row])
+        if self.isSearching{
+            self.completionForDedailView?(self.searchArray.value[indexPath.row])
+        }else{
+            self.completionForDedailView?(self.nowPlayingList.value[indexPath.row])
+        }
+        
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width:(collectionView.frame.width-10)/2, height: 200)
+    }
+    
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.contentOffset.y > (scrollView.contentSize.height - scrollView.frame.size.height) && self.state.value != .loading {
