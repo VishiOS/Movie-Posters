@@ -20,12 +20,44 @@ class MPMoviePostersVC: UIViewController {
         self.sendRequestToFetchMoviesList()
     }
     func setupViewProperties() {
+        self.addSortButton()
         self.title = "Movie Posters"
         self.moviePostersCollectionView.delegate = viewModel
         self.moviePostersCollectionView.dataSource = viewModel
         
-        
         self.openMoviewDetailVC()
+    }
+    func addSortButton() {
+        let bakButton  = UIBarButtonItem(title: "Sort", style: .plain, target: self, action: #selector(sortButtonTapped))
+        self.navigationItem.rightBarButtonItem = bakButton
+
+    }
+    @objc func sortButtonTapped() {
+        let actionSheetControllerIOS8: UIAlertController = UIAlertController(title: "Please select", message: "Option to Sort Movies", preferredStyle: .actionSheet)
+
+            let cancelActionButton = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+                print("Cancel")
+            }
+            actionSheetControllerIOS8.addAction(cancelActionButton)
+
+            let defaultActionButton = UIAlertAction(title: "Now Playing / Default", style: .default)
+                { _ in
+                   print("Now Playing / Default")
+            }
+            actionSheetControllerIOS8.addAction(defaultActionButton)
+
+            let popularActionButton = UIAlertAction(title: "Popular Movies", style: .default)
+                { _ in
+                    print("Popular Movies")
+            }
+            actionSheetControllerIOS8.addAction(popularActionButton)
+        
+        let ratedActionButton = UIAlertAction(title: "Highest Rated Movies", style: .default)
+            { _ in
+                print("Highest Rated Movies")
+        }
+        actionSheetControllerIOS8.addAction(ratedActionButton)
+            self.present(actionSheetControllerIOS8, animated: true, completion: nil)
     }
     func openMoviewDetailVC() {
         self.viewModel.completionForDedailView = { movie in
