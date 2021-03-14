@@ -20,6 +20,14 @@ class MPMoviePostersVC: UIViewController {
         self.title = "Movie Posters"
         self.moviePostersCollectionView.delegate = viewModel
         self.moviePostersCollectionView.dataSource = viewModel
+        self.openMoviewDetailVC()
+    }
+    func openMoviewDetailVC() {
+        self.viewModel.completionForDedailView = { movie in
+            let controller = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "MPMovieDetailVC") as? MPMovieDetailVC
+            controller?.movie = movie
+            self.navigationController?.pushViewController(controller!, animated: true)
+        }
     }
     
     func sendRequestToFetchMoviesList() {

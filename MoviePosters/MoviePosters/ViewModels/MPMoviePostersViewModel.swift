@@ -10,6 +10,9 @@ import UIKit
 class MPMoviePostersViewModel: NSObject {
     typealias completionHandller = (Bool) -> Void
     var completion: completionHandller?
+    
+    typealias completionHandllerForDetailView = (Movie) -> Void
+    var completionForDedailView: completionHandllerForDetailView?
     private (set) var state: Bindable<FetchingServiceState> = Bindable(.loading)
     private let webServices: WebServices
     private (set) var nowPlayingList: Bindable<[Movie]> = Bindable([])
@@ -36,6 +39,7 @@ extension MPMoviePostersViewModel: UICollectionViewDataSource, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("You selected cell #\(indexPath.item)!")
+        self.completionForDedailView?(self.nowPlayingList.value[indexPath.row])
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
