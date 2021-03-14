@@ -24,6 +24,8 @@ class MPMovieDetailVC: UIViewController {
     }
     func setupViewProperties(){
         self.fetchReleaseDates()
+        self.setBackButton()
+        self.title = "Movie Detail"
         guard let movie = movie else { return }
         titleLabel.text = movie.title
         overviewTextView.text = movie.overview
@@ -34,6 +36,14 @@ class MPMovieDetailVC: UIViewController {
         } else {
             posterImage.image = placeholderImage
         }
+    }
+    func setBackButton() {
+        let bakButton  = UIBarButtonItem(image: UIImage(named: "back_arrow_black"), style: .plain, target: self, action: #selector(backButtonTapped))
+        self.navigationItem.leftBarButtonItem = bakButton
+
+    }
+    @objc func backButtonTapped() {
+        self.navigationController?.popViewController(animated: true)
     }
     
     func fetchReleaseDates() {

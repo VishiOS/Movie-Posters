@@ -31,6 +31,7 @@ class MPMoviePostersVC: UIViewController {
         self.viewModel.completionForDedailView = { movie in
             let controller = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "MPMovieDetailVC") as? MPMovieDetailVC
             controller?.movie = movie
+            self.searchBar.resignFirstResponder()
             self.navigationController?.pushViewController(controller!, animated: true)
         }
     }
