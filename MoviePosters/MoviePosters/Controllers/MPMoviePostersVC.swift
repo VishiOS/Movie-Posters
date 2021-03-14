@@ -80,14 +80,14 @@ extension MPMoviePostersVC: UISearchBarDelegate {
         }else{
             self.viewModel.isSearching = false
         }
-        let arr: Bindable<[Movie]> = Bindable([])
+        let searchedArr: Bindable<[Movie]> = Bindable([])
         
         for item in self.viewModel.nowPlayingList.value {
             if let title = item.title, title.contains(searchText) {
-                arr.value.append(item)
+                searchedArr.value.append(item)
             }
         }
-        self.viewModel.searchArray = arr
+        self.viewModel.searchArray = searchedArr
         self.reloadmoviePostersCollectionView()
     }
 }

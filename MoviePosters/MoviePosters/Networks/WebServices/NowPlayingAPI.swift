@@ -8,7 +8,7 @@
 import Foundation
 
 class NowPlayingAPI: Service {
-
+    
     var paramters: [String: String]?
 
     init(paramters: [String: String]?) {
@@ -21,7 +21,7 @@ class NowPlayingAPI: Service {
     }
 
     var path: String {
-        return MPNetworkConstants.nowPlayingServicePath
+        return paramters?["API_NAME"] ?? MPNetworkConstants.nowPlayingServicePath
     }
 
     var method: HTTPMethod {

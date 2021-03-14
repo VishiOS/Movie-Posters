@@ -85,7 +85,10 @@ extension MPMoviePostersViewModel{
         if currentPage > totalPages { return }
         state.value = .loading
         
-        webServices.getNowPlayingMovies(service: NowPlayingAPI(paramters: [MPNetworkConstants.pageParameterKey: "\(currentPage)"]), completion: { [weak self] response in
+        MPNetworkConstants.apiName = .nowPlayingServicePath
+        
+        
+        webServices.getNowPlayingMovies(service: NowPlayingAPI(paramters: [MPNetworkConstants.pageParameterKey: "\(currentPage)", "API_NAME": MPNetworkConstants.apiName.rawValue]), completion: { [weak self] response in
             self?.state.value = .finishedLoading
             switch response {
             case .success(let result):
