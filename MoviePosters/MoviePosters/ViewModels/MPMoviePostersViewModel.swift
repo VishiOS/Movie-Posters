@@ -10,6 +10,10 @@ import UIKit
 class MPMoviePostersViewModel: NSObject {
     typealias completionHandller = (Bool) -> Void
     var completion: completionHandller?
+    var sortType: eApiName = .nowPlayingServicePath
+    var isSorting = false
+    
+    
     
     typealias completionHandllerForDetailView = (Movie) -> Void
     var completionForDedailView: completionHandllerForDetailView?
@@ -51,7 +55,6 @@ extension MPMoviePostersViewModel: UICollectionViewDataSource, UICollectionViewD
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("You selected cell #\(indexPath.item)!")
         if self.isSearching{
             self.completionForDedailView?(self.searchArray.value[indexPath.row])
         }else{
@@ -84,11 +87,11 @@ extension MPMoviePostersViewModel{
     func fetchNowPlaying(completion: @escaping ((_ status: Bool, _ error: Error?) -> ())) {
         if currentPage > totalPages { return }
         state.value = .loading
-        
-        MPNetworkConstants.apiName = .nowPlayingServicePath
-        
-        
-        webServices.getNowPlayingMovies(service: NowPlayingAPI(paramters: [MPNetworkConstants.pageParameterKey: "\(currentPage)", "API_NAME": MPNetworkConstants.apiName.rawValue]), completion: { [weak self] response in
+        if self.isSorting {
+            self.isSorting = false
+            self.nowPlayingList.value.removeAll()
+        }
+        webServices.getNowPlayingMovies(service: NowPlayingAPI(paramters: [MPNetworkConstants.pageParameterKey: "\(currentPage)", "API_NAME": self.sortType.rawValue]), completion: { [weak self] response in
             self?.state.value = .finishedLoading
             switch response {
             case .success(let result):

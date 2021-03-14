@@ -48,7 +48,6 @@ class MPMovieDetailViewModel: NSObject {
         dateFormatter.dateFormat = "dd-MM-yyyy"
         let datenew = dateFormatter.string(from: dateFromString as Date)
         
-        print(datenew)
         return datenew
     }
     

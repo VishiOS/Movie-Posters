@@ -33,28 +33,35 @@ class MPMoviePostersVC: UIViewController {
 
     }
     @objc func sortButtonTapped() {
+        self.searchBar.resignFirstResponder()
+        searchBar.setShowsCancelButton(false, animated: true)
         let actionSheetControllerIOS8: UIAlertController = UIAlertController(title: "Please select", message: "Option to Sort Movies", preferredStyle: .actionSheet)
 
             let cancelActionButton = UIAlertAction(title: "Cancel", style: .cancel) { _ in
-                print("Cancel")
             }
             actionSheetControllerIOS8.addAction(cancelActionButton)
 
             let defaultActionButton = UIAlertAction(title: "Now Playing / Default", style: .default)
                 { _ in
-                   print("Now Playing / Default")
+                self.viewModel.isSorting = true
+                self.viewModel.sortType = eApiName.nowPlayingServicePath
+                self.viewModel.sendRequestToFetchMoviesList()
             }
             actionSheetControllerIOS8.addAction(defaultActionButton)
 
             let popularActionButton = UIAlertAction(title: "Popular Movies", style: .default)
                 { _ in
-                    print("Popular Movies")
+                self.viewModel.isSorting = true
+                self.viewModel.sortType = eApiName.moviePopular
+                self.viewModel.sendRequestToFetchMoviesList()
             }
             actionSheetControllerIOS8.addAction(popularActionButton)
         
         let ratedActionButton = UIAlertAction(title: "Highest Rated Movies", style: .default)
             { _ in
-                print("Highest Rated Movies")
+            self.viewModel.isSorting = true
+            self.viewModel.sortType = eApiName.topRatedMovie
+            self.viewModel.sendRequestToFetchMoviesList()
         }
         actionSheetControllerIOS8.addAction(ratedActionButton)
             self.present(actionSheetControllerIOS8, animated: true, completion: nil)
